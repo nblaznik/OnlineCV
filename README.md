@@ -21,7 +21,6 @@ The site presents my academic and professional profile as a sequence of full-scr
 
 ## 📁 Project structure
 <pre>
-```
 src/
 │
 ├── App.jsx                     # Main application (scroll layout + all sections)
@@ -45,7 +44,6 @@ src/
 │
 ├── index.css                   # Tailwind base + global styles
 └── tailwind.config.js          # Tailwind configuration
-```
 </pre>
 All editable content lives in `data/cv_data.json`, allowing easy updates without touching layout code. In the future, I want to also be abel to compile a pdf using just the json file, so that I have a sinlge editable document, which then can be translated into multi-media documents. 
 
