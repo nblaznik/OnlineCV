@@ -20,6 +20,8 @@ The site presents my academic and professional profile as a sequence of full-scr
 ---
 
 ## 📁 Project structure
+<pre>
+```
 src/
 │
 ├── App.jsx                     # Main application (scroll layout + all sections)
@@ -43,18 +45,19 @@ src/
 │
 ├── index.css                   # Tailwind base + global styles
 └── tailwind.config.js          # Tailwind configuration
-
-All editable content lives in `data/cv_data.json`, allowing easy updates without touching layout code.
+```
+</pre>
+All editable content lives in `data/cv_data.json`, allowing easy updates without touching layout code. In the future, I want to also be abel to compile a pdf using just the json file, so that I have a sinlge editable document, which then can be translated into multi-media documents. 
 
 ## 🧩 Customizing the polygon background
 
 The animated background is produced from polygon DNA files.  
 Each DNA file is a simple JSON list of triangles:
 [
-{
-"points": [[x1, y1], [x2, y2], [x3, y3]],
-"color": [r, g, b, a]
-},
+    {
+    "points": [[x1, y1], [x2, y2], [x3, y3]],
+    "color": [r, g, b, a]
+    },
 ...
 ]
 
@@ -67,35 +70,7 @@ To add or replace a shape:
 
 Scrolling through the site dynamically transitions between these shapes.
 
----
-
-## 🧭 Navigation rail
-
-On screens larger than `md`, a floating navigation rail appears on the left side.  
-Each segment corresponds to a full-screen section. The active section glows,  
-and the rail responds visually on hover.
-
-This makes long-scroll browsing intuitive without cluttering smaller screens.
-
----
-
-## 📄 Content editing
-
-All CV information is in:
-
-
-You can edit:
-
-- Profile text  
-- Education  
-- Experience  
-- Awards  
-- Skills  
-- Languages  
-- Publications  
-- Contact and social links  
-
-The React components read directly from this JSON, so no code needs to change.
+DNA JSON files are created using the code available at [Genetic Programming](https://github.com/nblaznik/Genetic-Programming/tree/main) repository. 
 
 ---
 
