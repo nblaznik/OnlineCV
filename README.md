@@ -22,23 +22,27 @@ The site presents my academic and professional profile as a sequence of full-scr
 ## 📁 Project structure
 src/
 │
-├── App.jsx # Main application file
-├── PolygonCanvas.jsx # Animated background (triangle DNA renderer)
-├── NavRail.jsx # Left-hand navigation rail for large screens
+├── App.jsx                     # Main application (scroll layout + all sections)
+├── main.jsx                    # Vite entry point
+│
+├── PolygonCanvas.jsx           # Animated triangle background (DNA morph engine)
+├── NavRail.jsx                 # Left-side navigation rail for large screens
 │
 ├── data/
-│ ├── cv_data.json # All CV content (profile, education, skills, etc.)
-│ ├── dna_face.json
-│ ├── dna_uni.json
-│ ├── dna_lab.json
-│ ├── dna_award.json
-│ ├── dna_skill.json
-│ ├── dna_article.json
-│ └── ... # Additional DNA files
+│   ├── cv_data.json            # All CV text content
+│   │
+│   ├── dna_face.json           # Triangle DNA for "face" shape
+│   ├── dna_uni.json            # DNA for "university" shape
+│   ├── dna_lab.json            # DNA for "lab" shape
+│   ├── dna_award.json          # DNA for "awards" shape
+│   ├── dna_skill.json          # DNA for "skills" shape
+│   ├── dna_article.json        # DNA for "article" shape
+│   └── ...                     # Any additional DNA files
 │
-├── assets/ # (optional) images, icons
-└── main.jsx # Vite entry point
-
+├── assets/                     # (optional) Icons, images, etc.
+│
+├── index.css                   # Tailwind base + global styles
+└── tailwind.config.js          # Tailwind configuration
 
 All editable content lives in `data/cv_data.json`, allowing easy updates without touching layout code.
 
