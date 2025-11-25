@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 
 const items = [
   { id: "profile", label: "PROFILE" },
-  { id: "education", label: "EDUCATION" },
   { id: "experience", label: "EXPERIENCE" },
+  { id: "education", label: "EDUCATION" },
   { id: "awards", label: "AWARDS" },
   { id: "skills", label: "SKILLS" },
   { id: "publications", label: "PUBLICATIONS" },
@@ -115,7 +115,7 @@ export default function NavRail({ scrollRef }) {
             e.preventDefault();
             setActive(id); // immediate update on click
             const el = document.getElementById(id);
-            if (el) smoothScrollTo(el, 900);
+            if (el) smoothScrollTo(el, 40);
           }}
         >
           <div

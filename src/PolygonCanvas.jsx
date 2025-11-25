@@ -26,13 +26,6 @@ function sizeOf(poly) {
          (Math.max(...ys) - Math.min(...ys));
 }
 
-function scaleDNA(dna, scale) {
-  return dna.map(tri => ({
-    points: tri.points.map(([x, y]) => [x * scale, y * scale]),
-    color: tri.color // unchanged
-  }));
-}
-
 
 const dna_intro = dna1.map(tri => ({
   points: tri.points.map(([x,y]) => [x - 200, y]),
@@ -49,7 +42,7 @@ const dna_article = dna6.map(tri => ({
   color: tri.color
 }));
 
-const DNA = [dna_intro, dna1, dna2, dna_lab, dna4, dna5, dna_article, dna1];
+const DNA = [dna_intro, dna1, dna_lab, dna2, dna4, dna5, dna_article, dna1];
 
 export default function PolygonCanvas({ scrollRef }) {
   // Find actual canvas center offset based on CSS transform

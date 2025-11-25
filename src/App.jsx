@@ -72,8 +72,8 @@ export default function App() {
       {/* SECTION 0 ??" LANDER */}
       <section id="lander" className="snap-start snap-always h-screen flex items-center justify-center px-6">
         <div className="max-w-3xl text-center md:text-left">
-          <h1 className="text-6xl font-bold">Curriculum Vitae</h1>
-          <h3 className="text-xl text-center font-bold">Nejc Blaznik</h3>
+          <h1 className="text-6xl text-center font-bold mb-4">Digital CV</h1>
+          <h3 className="text-3xl text-center font-bold">Nejc Blaznik</h3>
         </div>
       </section>
 
@@ -81,9 +81,44 @@ export default function App() {
       <section id="profile" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Profile</h2>
-          <p className="text-xl leading-relaxed:" dangerouslySetInnerHTML={{ __html: cv.profile }}></p>
+          <p className="mb-6 text-base md:text-xl leading-relaxed:" dangerouslySetInnerHTML={{ __html: cv.profile }}></p>
         </div>
       </section>
+
+
+      {/* SECTION 4 ??" EXPERIENCE */}
+      <section id="experience" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+        <div className="max-w-3xl">
+          <h2 className="text-5xl font-semibold mb-6">Experience</h2>
+
+                {cv.experience.map((exp, idx) => {
+            const [open, setOpen] = React.useState(false);
+
+            return (
+              <div key={idx} className="mb-6 text-base md:text-xl">
+                <button
+                  className="font-bold cursor-pointer w-full text-left"
+                  onClick={() => setOpen(!open)}
+                >
+                  {exp.role} <span className="text-gray-600">({exp.years})</span>
+                  {open ? " (hide)" : " (show)"}
+                </button>
+
+                {open && (
+                  <ul className="list-disc list-inside mt-2">
+                    {exp.points.map((p, i) => (
+                      <li key={i} dangerouslySetInnerHTML={{ __html: p }}></li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+
+
 
       {/* SECTION 3 ??" EDUCATION */}
       <section id="education" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
@@ -98,27 +133,6 @@ export default function App() {
               <ul className="list-disc list-inside mt-2">
                 {item.details.map((d, i) => (
                   <li key={i}>{d}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 4 ??" EXPERIENCE */}
-      <section id="experience" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
-        <div className="max-w-3xl">
-          <h2 className="text-5xl font-semibold mb-6">Experience</h2>
-
-          {cv.experience.map((exp, idx) => (
-            <div key={idx} className="mb-6 text-base md:text-xl">
-              <p className="font-bold">
-                {exp.role}{" "}
-                <span className="text-gray-600">({exp.years})</span>
-              </p>
-              <ul className="list-disc list-inside mt-2">
-                {exp.points.map((p, i) => (
-                  <li key={i}>{p}</li>
                 ))}
               </ul>
             </div>
