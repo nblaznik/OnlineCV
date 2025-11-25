@@ -43,6 +43,7 @@ export default function NavRail({ scrollRef }) {
     if (bestSection) setActive(bestSection);
   }
 
+
   function smoothScrollTo(element, duration = 900) {
     const container = scrollRef.current;
     if (!container) return;
@@ -52,6 +53,9 @@ export default function NavRail({ scrollRef }) {
     const diff = target - start;
 
     let startTime = null;
+
+    // Disable scroll snapping during manual scroll
+    container.classList.add("no-snap");
 
     function step(timestamp) {
       if (!startTime) startTime = timestamp;
@@ -68,10 +72,16 @@ export default function NavRail({ scrollRef }) {
       if (elapsed < duration) {
         requestAnimationFrame(step);
       } else {
-        isManualScrolling.current = false;
+        // Scroll finished
 
-        // ------- CRUCIAL: update active section AFTER landing -------
-        updateActiveSection();
+        requestAnimationFrame(() => {
+          isManualScrolling.current = false;
+
+          // Re-enable snapping
+          container.classList.remove("no-snap");
+
+          updateActiveSection();
+        });
       }
     }
 
@@ -79,22 +89,28 @@ export default function NavRail({ scrollRef }) {
     requestAnimationFrame(step);
   }
 
+
+
   useEffect(() => {
     const observers = [];
 
     items.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (!el) return;
+      
+      let scrollTimeout = null;
 
       const obs = new IntersectionObserver(
         ([entry]) => {
           if (isManualScrolling.current) return;
 
-          if (entry.isIntersecting) setActive(id);
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (entry.isIntersecting) setActive(id);
+          }, 50);
         },
-        { threshold: 0.6 }
+        { threshold: 0.5 }
       );
-
       obs.observe(el);
       observers.push(obs);
     });
@@ -113,22 +129,32 @@ export default function NavRail({ scrollRef }) {
           className="group flex items-center gap-4 cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
-            setActive(id); // immediate update on click
+
+            // 1 — Immediately activate this nav item
+            setActive(id);
+
             const el = document.getElementById(id);
-            if (el) smoothScrollTo(el, 40);
-          }}
-        >
+            if (!el) return;
+
+            // 2 — Disable observer BEFORE anything happens
+            isManualScrolling.current = true;
+
+            // 3 — Start scroll on next animation frame (critical!)
+            requestAnimationFrame(() => {
+              smoothScrollTo(el, 10);
+            });
+          }}        >
           <div
-            className={`transition-all duration-300 rounded-full bg-gray-400/40 group-hover:bg-white
+            className={`transition-all duration-10 rounded-full bg-gray-400/40 group-hover:bg-white
               ${active === id
-                ? "w-16 h-[2px] bg-white shadow-[0_0_6px_2px_rgba(255,255,255,0.6)]"
-                : "w-8 h-[1px]"
+                ? "w-16 h-[2px] bg-white shadow-[0_0_9px_1px_rgba(215,255,255,0.6)]"
+                : "w-10 h-[1px]"
               }
             `}
           />
 
           <span
-            className={`text-xs tracking-[0.18em] whitespace-nowrap transform transition-all duration-300
+            className={`text-xs tracking-[0.18em] whitespace-nowrap transform transition-all duration-10
               ${active === id
                 ? "text-white translate-x-0"
                 : "text-gray-400 group-hover:text-gray-200 group-hover:translate-x-1"

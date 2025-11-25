@@ -70,7 +70,7 @@ export default function App() {
 
 
       {/* SECTION 0 ??" LANDER */}
-      <section id="lander" className="snap-start snap-always h-screen flex items-center justify-center px-6">
+      <section id="lander" className="h-screen flex items-center justify-center px-6">
         <div className="max-w-3xl text-center md:text-left">
           <h1 className="text-6xl text-center font-bold mb-4">Digital CV</h1>
           <h3 className="text-3xl text-center font-bold">Nejc Blaznik</h3>
@@ -78,7 +78,7 @@ export default function App() {
       </section>
 
       {/* SECTION 2 ??" PROFILE */}
-      <section id="profile" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="profile" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Profile</h2>
           <p className="mb-6 text-base md:text-xl leading-relaxed:" dangerouslySetInnerHTML={{ __html: cv.profile }}></p>
@@ -87,7 +87,7 @@ export default function App() {
 
 
       {/* SECTION 4 ??" EXPERIENCE */}
-      <section id="experience" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="experience" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Experience</h2>
 
@@ -101,11 +101,11 @@ export default function App() {
                   onClick={() => setOpen(!open)}
                 >
                   {exp.role} <span className="text-gray-600">({exp.years})</span>
-                  {open ? " (hide)" : " (show)"}
+                  {/* {open ? " (hide)" : " (show)"} */}
                 </button>
 
                 {open && (
-                  <ul className="list-disc list-inside mt-2">
+                  <ul className="list-disc list-inside mt-2 ">
                     {exp.points.map((p, i) => (
                       <li key={i} dangerouslySetInnerHTML={{ __html: p }}></li>
                     ))}
@@ -121,7 +121,7 @@ export default function App() {
 
 
       {/* SECTION 3 ??" EDUCATION */}
-      <section id="education" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="education" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Education</h2>
           {cv.education.map((item, idx) => (
@@ -141,7 +141,7 @@ export default function App() {
       </section>
 
       {/* SECTION 5 ??" AWARDS */}
-      <section id="awards" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="awards" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Awards and Distinctions</h2>
 
@@ -171,7 +171,7 @@ export default function App() {
       </section>
 
       {/* SECTION 6 ??" SKILLS */}
-      <section id="skills" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="skills" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Skills</h2>
           <p className="text-base md:text-xl">
@@ -194,7 +194,7 @@ export default function App() {
       
 
       {/* SECTION 8 ??" PUBLICATIONS */}
-      <section id="publications" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="publications" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Publications & Patents</h2>
 
@@ -207,7 +207,7 @@ export default function App() {
       </section>
       
       {/* SECTION 9 ??" CONTACT */}
-      <section id="contact" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="contact" className="md:relative h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center">
           <h1 className="text-5xl font-bold">{cv.name}</h1>
           <div className="mt-6 text-lg space-y-5">

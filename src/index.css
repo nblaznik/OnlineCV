@@ -19,8 +19,8 @@
 }
 
 a {
-  /* font-weight: 500; */
-  /* color: #2c1b08; */
+  font-weight: 500;
+  color: #512f0f;
   text-decoration: inherit;
 }
 a:hover {
@@ -30,6 +30,10 @@ a:hover {
 body {
   margin: 0;
   padding: 0;
+}
+
+html, body {
+  overscroll-behavior: none;
 }
 
 h1 {
@@ -69,4 +73,9 @@ button:focus,
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.no-snap {
+  scroll-snap-type: none !important;
 }
