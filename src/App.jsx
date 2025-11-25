@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import cv from "./data/cv_data.json";
 import PolygonCanvas from "./PolygonCanvas";
 import {  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
@@ -8,13 +8,55 @@ import NavRail from "./NavRail";
 
 export default function App() {
   const scrollRef = useRef(null);
+  const [showNav, setShowNav] = useState(false);
+
+  useEffect(() => {
+    const welcome = document.getElementById("lander");
+    if (!welcome) return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        // If welcome is fully or mostly visible ?+' hide nav
+        if (entry.isIntersecting) {
+          setShowNav(false);
+        } else {
+          setShowNav(true);
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    obs.observe(welcome);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <div ref={scrollRef} className="relative w-screen h-screen overflow-y-scroll scroll-smooth">
+  <div className="relative w-screen h-screen">
+      <div className="lg:grid lg:grid-cols-[220px_1fr] w-full h-full">
+
+        {/* LEFT COLUMN ??" APPEARS ONLY AFTER PAGE 1 */}
+        <div className="relative hidden lg:block">
+        <div
+          className={`
+            hidden md:block transition-opacity duration-500
+            ${showNav ? "opacity-100" : "opacity-0 pointer-events-none"}
+          `}
+        >
+          <NavRail scrollRef={scrollRef} />
+        </div>
+        </div>
+
+        {/* RIGHT COLUMN ??" SCROLLABLE CV CONTENT */}
+        <div
+          ref={scrollRef}
+          className="relative h-full overflow-y-scroll scroll-smooth"
+        >
+
 
       {/* BACKGROUND TRIANGLES */}
+
       <div className="opacity-30 
-                      lg:opacity-70
+                      lg:opacity-30
                       fixed
                       top-1/2
                       left-1/2
@@ -25,7 +67,9 @@ export default function App() {
                       >
       <PolygonCanvas scrollRef={scrollRef} />
       </div>
-      {/* SECTION 0 — LANDER */}
+
+
+      {/* SECTION 0 ??" LANDER */}
       <section id="lander" className="snap-start snap-always h-screen flex items-center justify-center px-6">
         <div className="max-w-3xl text-center md:text-left">
           <h1 className="text-6xl font-bold">Curriculum Vitae</h1>
@@ -33,10 +77,7 @@ export default function App() {
         </div>
       </section>
 
-      <NavRail />
-
-
-      {/* SECTION 2 — PROFILE */}
+      {/* SECTION 2 ??" PROFILE */}
       <section id="profile" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Profile</h2>
@@ -44,7 +85,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 3 — EDUCATION */}
+      {/* SECTION 3 ??" EDUCATION */}
       <section id="education" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Education</h2>
@@ -64,7 +105,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 4 — EXPERIENCE */}
+      {/* SECTION 4 ??" EXPERIENCE */}
       <section id="experience" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Experience</h2>
@@ -85,7 +126,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 5 — AWARDS */}
+      {/* SECTION 5 ??" AWARDS */}
       <section id="awards" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Awards and Distinctions</h2>
@@ -115,7 +156,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 6 — SKILLS */}
+      {/* SECTION 6 ??" SKILLS */}
       <section id="skills" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Skills</h2>
@@ -138,7 +179,7 @@ export default function App() {
 
       
 
-      {/* SECTION 8 — PUBLICATIONS */}
+      {/* SECTION 8 ??" PUBLICATIONS */}
       <section id="publications" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Publications & Patents</h2>
@@ -151,7 +192,7 @@ export default function App() {
         </div>
       </section>
       
-      {/* SECTION 9 — CONTACT */}
+      {/* SECTION 9 ??" CONTACT */}
       <section id="contact" className="md:relative snap-start h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
         <div className="max-w-3xl text-center">
           <h1 className="text-5xl font-bold">{cv.name}</h1>
@@ -192,7 +233,9 @@ export default function App() {
           </div>
         </div>
       </section>
-
+      
+      </div>
+    </div>
     </div>
   );
 }
