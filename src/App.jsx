@@ -38,7 +38,7 @@ export default function App() {
         <div className="relative hidden lg:block">
         <div
           className={`
-            hidden md:block transition-opacity duration-500
+            hidden md:block transition-opacity duration-500 
             ${showNav ? "opacity-100" : "opacity-0 pointer-events-none"}
           `}
         >
