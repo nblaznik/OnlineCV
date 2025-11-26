@@ -8,6 +8,7 @@ import {
   useMotionValue
 } from "framer-motion";
 
+import dna0 from "./data/dna_intro.json";  // face
 import dna1 from "./data/dna_face.json";  // face
 import dna2 from "./data/dna_uni.json";  // university
 import dna3 from "./data/dna_lab.json";  // 
@@ -27,7 +28,7 @@ function sizeOf(poly) {
 }
 
 
-const dna_intro = dna1.map(tri => ({
+const dna_intro = dna0.map(tri => ({
   points: tri.points.map(([x,y]) => [x - 200, y]),
   color: tri.color
 }));

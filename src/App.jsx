@@ -91,7 +91,7 @@ export default function App() {
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Experience</h2>
 
-                {cv.experience.map((exp, idx) => {
+            {cv.experience.map((exp, idx) => {
             const [open, setOpen] = React.useState(false);
 
             return (
