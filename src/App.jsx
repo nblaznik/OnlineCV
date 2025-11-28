@@ -32,7 +32,7 @@ export default function App() {
 
   return (
   <div className="relative w-screen h-screen">
-      <div className="lg:grid lg:grid-cols-[220px_1fr] w-full h-full">
+    <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] w-full h-full">
 
         {/* LEFT COLUMN ??" APPEARS ONLY AFTER PAGE 1 */}
         <div className="relative hidden lg:block">
@@ -78,7 +78,7 @@ export default function App() {
       </section>
 
       {/* SECTION 2 ??" PROFILE */}
-      <section id="profile" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="profile" className="md:relative ml-6 mr-6  h-screen flex items-center justify-center px-1 max-w-xl mx-auto  ">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Profile</h2>
           <p className="mb-6 text-base md:text-xl leading-relaxed:" dangerouslySetInnerHTML={{ __html: cv.profile }}></p>
@@ -87,7 +87,7 @@ export default function App() {
 
 
       {/* SECTION 4 ??" EXPERIENCE */}
-      <section id="experience" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="experience" className="md:relative ml-6 mr-6  h-screen flex items-center justify-center px-1 max-w-xl mx-auto  ">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Experience</h2>
 
@@ -121,7 +121,7 @@ export default function App() {
 
 
       {/* SECTION 3 ??" EDUCATION */}
-      <section id="education" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="education" className="md:relative ml-6 mr-6 h-screen flex items-center justify-center px-1 max-w-xl mx-auto">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Education</h2>
           {cv.education.map((item, idx) => (
@@ -141,7 +141,7 @@ export default function App() {
       </section>
 
       {/* SECTION 5 ??" AWARDS */}
-      <section id="awards" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="awards" className="md:relative ml-6 mr-6 h-screen flex items-center justify-center px-1 max-w-xl mx-auto  ">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Awards and Distinctions</h2>
 
@@ -171,7 +171,7 @@ export default function App() {
       </section>
 
       {/* SECTION 6 ??" SKILLS */}
-      <section id="skills" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="skills" className="md:relative ml-6 mr-6 h-screen flex items-center justify-center px-1 max-w-xl mx-auto ">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Skills</h2>
           <p className="text-base md:text-xl">
@@ -180,7 +180,7 @@ export default function App() {
           <p className="text-base md:text-xl mt-4">
             <strong>Intermediate:</strong> {cv.skills.intermediate.join(", ")}
           </p>
-          <h2 className="text-5xl font-semibold mb-6">Languages</h2>
+          <h2 className="text-5xl font-semibold mt-12 mb-6">Languages</h2>
           <ul className="list-disc list-inside text-base md:text-xl">
             {Object.entries(cv.languages).map(([lang, level], i) => (
               <li key={i}>
@@ -194,11 +194,11 @@ export default function App() {
       
 
       {/* SECTION 8 ??" PUBLICATIONS */}
-      <section id="publications" className="md:relative  h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="publications" className="md:relative ml-6 mr-6 h-screen flex items-center justify-center px-1 max-w-xl mx-auto  ">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Publications & Patents</h2>
 
-          <ul className="list-disc list-inside text-xl space-y-2">
+          <ul className="list-disc list-inside text-base md:text-xl space-y-2">
             {cv.publications.map((pub, i) => (
               <li key={i}>{pub}</li>
             ))}
@@ -207,7 +207,7 @@ export default function App() {
       </section>
       
       {/* SECTION 9 ??" CONTACT */}
-      <section id="contact" className="md:relative h-screen flex items-center justify-center px-1 max-w-xl mx-auto md:left-[-5%] lg:left-[-15%]">
+      <section id="contact" className="md:relative ml-6 mr-6 h-screen flex items-center justify-center px-1 max-w-xl mx-auto  ">
         <div className="max-w-3xl text-center">
           <h1 className="text-5xl font-bold">{cv.name}</h1>
           <div className="mt-6 text-lg space-y-5">
@@ -221,7 +221,7 @@ export default function App() {
                   href={s.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xl hover:text-blue-700 transition flex items-center"
+                  className="text-base md:text-xl hover:text-blue-700 transition flex items-center"
                 >
                   {s.platform.toLowerCase() === "github" && <Github size={32} />}
                   {s.platform.toLowerCase() === "linkedin" && <Linkedin size={32} />}
