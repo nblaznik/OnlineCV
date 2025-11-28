@@ -65,7 +65,7 @@
         "Operated and maintained a cold-atoms laboratory", 
         "Developed and implemented <a href='https://link.aps.org/doi/10.1103/PhysRevA.110.023303' target='_blank' rel='noopener noreferrer'>spin-resolved off-axis holography</a>",
         "Created advanced <a href='' target='_blank' rel='noopener noreferrer'>inpainting reconstruction pipelines based on principal component analysis for phase imaging</a>",
-        "Created an <a href='https://github.com/nblaznik/BECsplorer' target='_blank' rel='noopener noreferrer'>analysis tool</a> for spin dynamics, segmentation, and parameter correlation across experiments"
+        "Created an <a href='https://github.com/nblaznik/BECsplorer' target='_blank' rel='noopener noreferrer'>analysis tool</a> based on Qt for spin dynamics, segmentation, and parameter correlation across experiments"
       ]
     },
     {
