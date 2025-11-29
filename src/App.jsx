@@ -69,13 +69,57 @@ export default function App() {
       </div>
 
 
-      {/* SECTION 0 ??" LANDER */}
+      {/* SECTION 0 ??" LANDER
       <section id="lander" className="min-h-screen  flex items-center justify-center px-6">
         <div className="max-w-3xl text-center md:text-left">
-          <h1 className="text-6xl text-center font-bold mb-4">Digital CV</h1>
-          <h3 className="text-3xl text-center font-bold">Nejc Blaznik</h3>
+          {/* <h1 className="text-6xl text-center font-bold mb-4">Digital CV</h1> */}
+          {/* <h1 className="text-4xl text-center font-bold mb-4">Nejc Blaznik</h1> */}
+          {/* <h3 className="text-base text-center">(building ... )</h3> */}
+        {/* </div> */}
+      {/* </section> */}
+
+      {/* SECTION 9 ??" CONTACT */}
+      <section id="lander" className="md:relative ml-6 mr-6 min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
+        <div className="max-w-3xl text-center">
+          <h1 className="text-5xl font-bold">{cv.name}</h1>
+          <div className="mt-6 text-lg space-y-5">
+            <p>{cv.contact.email}</p>
+            
+           {/* Social Icons */}
+            <div className="mt-8 flex justify-center gap-10">
+              {cv.contact.socials.map((s, i) => (
+                <a
+                  key={i}
+                  href={s.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base md:text-xl hover:text-blue-700 transition flex items-center"
+                >
+                  {s.platform.toLowerCase() === "github" && <Github size={32} />}
+                  {s.platform.toLowerCase() === "linkedin" && <Linkedin size={32} />}
+                  {s.platform.toLowerCase() === "instagram" && <Instagram size={32} />}
+                  {s.platform.toLowerCase() === "orcid" && <Newspaper size={32} />}
+                </a>
+              ))}
+            </div>
+            {/* <div>Socials:</div>
+            <ul className="list-disc list-inside">
+              {cv.contact.socials.map((s, i) => (
+                <li key={i}>
+                  <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                    {s.platform}
+                  </a>
+                </li>
+              ))}
+            </ul> */}
+            {/* <p><strong>Phone:</strong> {cv.contact.phone.join(" / ")}</p> # hide this for privacy
+            {cv.contact.address.map((a, i) => (
+              <p key={i}><strong>Address:</strong> {a}</p>
+            ))} */}
+          </div>
         </div>
       </section>
+      
 
       {/* SECTION 2 ??" PROFILE */}
       <section id="profile" className="md:relative ml-6 mr-6  min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
