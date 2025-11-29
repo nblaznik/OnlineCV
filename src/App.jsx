@@ -77,15 +77,26 @@ export default function App() {
           {/* <h3 className="text-base text-center">(building ... )</h3> */}
         {/* </div> */}
       {/* </section> */}
-
-      {/* SECTION 9 ??" CONTACT */}
-      <section id="lander" className="md:relative ml-6 mr-6 min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
-        <div className="max-w-3xl text-center">
+      <section
+        id="lander"
+        className="
+          md:relative
+          min-h-screen
+          flex items-center justify-center
+          px-1
+        "
+      >
+        <div
+          className="
+            max-w-xl
+            text-center
+            lg:-translate-x-[15vw]
+          "
+        >
           <h1 className="text-5xl font-bold">{cv.name}</h1>
           <div className="mt-6 text-lg space-y-5">
             <p>{cv.contact.email}</p>
-            
-           {/* Social Icons */}
+
             <div className="mt-8 flex justify-center gap-10">
               {cv.contact.socials.map((s, i) => (
                 <a
@@ -102,24 +113,20 @@ export default function App() {
                 </a>
               ))}
             </div>
-            {/* <div>Socials:</div>
-            <ul className="list-disc list-inside">
-              {cv.contact.socials.map((s, i) => (
-                <li key={i}>
-                  <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                    {s.platform}
-                  </a>
-                </li>
-              ))}
-            </ul> */}
-            {/* <p><strong>Phone:</strong> {cv.contact.phone.join(" / ")}</p> # hide this for privacy
-            {cv.contact.address.map((a, i) => (
-              <p key={i}><strong>Address:</strong> {a}</p>
-            ))} */}
           </div>
+        </div> {/*(make it centered on mobile) */}
+        <div
+          className="
+            absolute top-5
+            left-1/2 -translate-x-1/2     /* centered on mobile */
+            md:left-auto md:translate-x-0 /* disable centering on md+ */
+            md:right-5                    /* right aligned on md+ */
+            text-gray-600 text-sm
+          "
+        >
+          <p>Website currently in production, November 2025</p>
         </div>
       </section>
-      
 
       {/* SECTION 2 ??" PROFILE */}
       <section id="profile" className="md:relative ml-6 mr-6  min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
