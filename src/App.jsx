@@ -109,7 +109,7 @@ export default function App() {
                   {s.platform.toLowerCase() === "github" && <Github size={32} />}
                   {s.platform.toLowerCase() === "linkedin" && <Linkedin size={32} />}
                   {s.platform.toLowerCase() === "instagram" && <Instagram size={32} />}
-                  {s.platform.toLowerCase() === "orcid" && <Newspaper size={32} />}
+                  {s.platform.toLowerCase() === "scholar" && <Newspaper size={32} />}
                 </a>
               ))}
             </div>
@@ -277,7 +277,7 @@ export default function App() {
                   {s.platform.toLowerCase() === "github" && <Github size={32} />}
                   {s.platform.toLowerCase() === "linkedin" && <Linkedin size={32} />}
                   {s.platform.toLowerCase() === "instagram" && <Instagram size={32} />}
-                  {s.platform.toLowerCase() === "orcid" && <Newspaper size={32} />}
+                  {s.platform.toLowerCase() === "scholar" && <Newspaper size={32} />}
                 </a>
               ))}
             </div>
