@@ -6,6 +6,159 @@ import { Mail, Github, Linkedin, Globe, Instagram, Newspaper } from "lucide-reac
 import NavRail from "./NavRail";
 
 
+
+function AccordionCard({ id, title, subtitle, isOpen, onToggle, children }) {
+  return (
+    <div
+      id={id}
+      className={`border border-[#383225]/20 rounded-xl bg-[#f1e4c6] overflow-hidden transition-shadow ${
+        isOpen ? "shadow-lg" : "shadow-sm"
+      }`}
+    >
+      <button
+        onClick={onToggle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+        aria-expanded={isOpen}
+        aria-controls={`${id}-content`}
+        className="w-full text-left p-6 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#383225]"
+      >
+        <span className="font-bold text-lg">
+          {title}{" "}
+          {subtitle && (
+            <span className="text-gray-500 font-normal">
+              ({subtitle})
+            </span>
+          )}
+        </span>
+
+        <span
+          className={`text-xl transition-transform ${
+            isOpen ? "rotate-45" : "rotate-0"
+          }`}
+        >
+          +
+        </span>
+      </button>
+
+      <div
+        id={`${id}-content`}
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-6 pb-6">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function ExperienceSection({ data }) {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  // deep-link handling
+  useEffect(() => {
+    const hash = window.location.hash.replace("#experience-", "");
+    const idx = data.findIndex((_, i) => String(i) === hash);
+    if (idx !== -1) {
+      setOpenIndex(idx);
+      setTimeout(() => {
+        document
+          .getElementById(`experience-${idx}`)
+          ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  }, [data]);
+
+  const toggle = (idx) => {
+    const next = openIndex === idx ? null : idx;
+    setOpenIndex(next);
+    window.history.replaceState(
+      null,
+      "",
+      next === null ? "#experience" : `#experience-${idx}`
+    );
+  };
+
+  return (
+    <section
+      id="experience"
+      className="md:relative ml-6 mr-6 min-h-screen flex items-center justify-center px-1 max-w-xl mx-auto"
+    >
+      <div className="max-w-3xl w-full">
+        <h2 className="text-5xl font-semibold mb-10">
+          Experience
+        </h2>
+
+        <div className="space-y-6">
+          {data.map((exp, idx) => (
+            <AccordionCard
+              key={idx}
+              id={`experience-${idx}`}
+              title={exp.role}
+              subtitle={exp.years}
+              isOpen={openIndex === idx}
+              onToggle={() => toggle(idx)}
+            >
+              <ul className="list-disc list-inside text-base md:text-lg space-y-1">
+                {exp.points.map((p, i) => (
+                  <li key={i} dangerouslySetInnerHTML={{ __html: p }} />
+                ))}
+              </ul>
+            </AccordionCard>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EducationSection({ data }) {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  return (
+    <section
+      id="education"
+      className="md:relative ml-6 mr-6 min-h-screen flex items-center justify-center px-1 max-w-xl mx-auto"
+    >
+      <div className="max-w-3xl w-full">
+        <h2 className="text-5xl font-semibold mb-10">
+          Education
+        </h2>
+
+        <div className="space-y-6">
+          {data.map((edu, idx) => (
+            <AccordionCard
+              key={idx}
+              id={`education-${idx}`}
+              title={edu.title}
+              subtitle={edu.years}
+              isOpen={openIndex === idx}
+              onToggle={() =>
+                setOpenIndex(openIndex === idx ? null : idx)
+              }
+            >
+              <ul className="list-disc list-inside text-base md:text-lg space-y-1">
+                {edu.details.map((d, i) => (
+                  <li key={i} dangerouslySetInnerHTML={{ __html: d }} />
+                ))}
+              </ul>
+            </AccordionCard>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 export default function App() {
   const scrollRef = useRef(null);
   const [showNav, setShowNav] = useState(false);
@@ -138,7 +291,7 @@ export default function App() {
 
 
       {/* SECTION 4 ??" EXPERIENCE */}
-      <section id="experience" className="md:relative ml-6 mr-6  min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
+      {/* <section id="experience" className="md:relative ml-6 mr-6  min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Experience</h2>
 
@@ -152,11 +305,10 @@ export default function App() {
                   onClick={() => setOpen(!open)}
                 >
                   {exp.role} <span className="text-gray-600">({exp.years})</span>
-                  {/* {open ? " (hide)" : " (show)"} */}
                 </button>
 
                 {open && (
-                  <ul className="list-disc list-inside mt-2 ">
+                  <ul className="list-disc list-inside mt-2">
                     {exp.points.map((p, i) => (
                       <li key={i} dangerouslySetInnerHTML={{ __html: p }}></li>
                     ))}
@@ -166,13 +318,14 @@ export default function App() {
             );
           })}
         </div>
-      </section>
+      </section> */}
 
-
+      <ExperienceSection data={cv.experience} />
+      <EducationSection data={cv.education} />
 
 
       {/* SECTION 3 ??" EDUCATION */}
-      <section id="education" className="md:relative ml-6 mr-6 min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto">
+      {/* <section id="education" className="md:relative ml-6 mr-6 min-h-screen flex items-center justify-center px-1 max-w-xl mx-auto">
         <div className="max-w-3xl text-center md:text-left">
           <h2 className="text-5xl font-semibold mb-6">Education</h2>
           {cv.education.map((item, idx) => (
@@ -183,13 +336,13 @@ export default function App() {
               </p>
               <ul className="list-disc list-inside mt-2">
                 {item.details.map((d, i) => (
-                  <li key={i}>{d}</li>
+                  <li key={i} dangerouslySetInnerHTML={{__html:d}}></li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* SECTION 5 ??" AWARDS */}
       <section id="awards" className="md:relative ml-6 mr-6 min-h-screen  flex items-center justify-center px-1 max-w-xl mx-auto  ">
@@ -198,20 +351,9 @@ export default function App() {
 
           <h3 className="font-semibold text-xl md:text-2xl">Best Poster Awards:</h3>
           <ul className="list-disc list-inside text-base md:text-xl mb-6">
-            {cv.awards.poster.map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
+              {cv.awards.poster.join(", ")}
           </ul>
-
-          <h3 className="font-semibold text-xl md:text-2xl">National Science Awards:</h3>
-          <ul className="list-disc list-inside mb-6 text-base md:text-xl">
-            {Object.entries(cv.awards.national).map(([field, results], idx) => (
-              <li key={idx}>
-                <strong>{field}:</strong> {results.join(", ")}
-              </li>
-            ))}
-          </ul>
-
+          
           <h3 className="font-semibold  text-xl md:text-2xl">Extra-Curricular Distinctions:</h3>
           <ul className="list-disc list-inside text-base md:text-xl">
             {cv.awards.extracurricular.map((e, i) => (
@@ -226,10 +368,16 @@ export default function App() {
         <div className="max-w-3xl">
           <h2 className="text-5xl font-semibold mb-6">Skills</h2>
           <p className="text-base md:text-xl">
-            <strong>Fluent:</strong> {cv.skills.fluent.join(", ")}
+            <strong>Programming and Data Manipulation:</strong> {cv.skills.prog_data.join(", ")}
           </p>
           <p className="text-base md:text-xl mt-4">
-            <strong>Intermediate:</strong> {cv.skills.intermediate.join(", ")}
+            <strong>Software Engineering:</strong> {cv.skills.soft_eng.join(", ")}
+          </p>
+          <p className="text-base md:text-xl mt-4">
+            <strong>Experimental & Imaging Tools:</strong> {cv.skills.experimental.join(", ")}
+          </p>
+          <p className="text-base md:text-xl mt-4">
+            <strong>Other:</strong> {cv.skills.other.join(", ")}
           </p>
           <h2 className="text-5xl font-semibold mt-12 mb-6">Languages</h2>
           <ul className="list-disc list-inside text-base md:text-xl">
@@ -251,7 +399,7 @@ export default function App() {
 
           <ul className="list-disc list-inside text-base md:text-xl space-y-2">
             {cv.publications.map((pub, i) => (
-              <li key={i}>{pub}</li>
+              <li key={i} dangerouslySetInnerHTML={{__html:pub}}></li>
             ))}
           </ul>
         </div>

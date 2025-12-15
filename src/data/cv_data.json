@@ -8,104 +8,103 @@
       "Rigastraat 388, 3541 ED Utrecht, The Netherlands"
     ],
     "socials": [
-      { "platform": "LinkedIn", "link": "https://www.linkedin.com/in/nejc-blaznik-b2a1a7b8/"},
-      { "platform": "GitHub",   "link": "https://github.com/nblaznik"},
+      { "platform": "LinkedIn",  "link": "https://www.linkedin.com/in/nejc-blaznik-b2a1a7b8/"},
+      { "platform": "GitHub",    "link": "https://github.com/nblaznik"},
       { "platform": "Instagram", "link": "https://www.instagram.com/nejcblaznik/"},
-      { "platform": "Scholar",     "link": "https://scholar.google.com/citations?user=0wEoXiIAAAAJ&hl=en&inst=7240083048524121927&oi=ao"}
+      { "platform": "Scholar",   "link": "https://scholar.google.com/citations?user=0wEoXiIAAAAJ&hl=en&inst=7240083048524121927&oi=ao"}
     ]
   },
 
-  "profile": "Experimental physicist with a strong background in <b>quantum mechanics,  optics</b> and <b>data-driven imaging</b>, combining hands-on <b>laboratory expertise</b> with <b>advanced computational analysis</b>. <br/><br/>Experienced in designing and building complex experimental systems, developing new optical and data-processing techniques, and solving problems under demanding conditions. Driven by curiosity and a wish to uncover and engineer new physical phenomena, I aim to bridge fundamental understanding with practical innovation, turning experimental precision and computational insight into new technological possibilities.",
+  "profile": "Experimental physicist with a strong background in <b>quantum mechanics,  optics</b> and <b>data-driven imaging</b>. Strong blend of <b>laboratory expertise, software engineering</b> and <b>data analysis</b>. Built new imaging methods, custom reconstruction pipelines and robust analysis tools for complex experiments. Interested in problems where physics, computation and instrumentation meet.",
 
   "education": [
     {
-      "title": "Utrecht University (PhD)",
-      "years": "2020–present",
-      "details": ["PhD Thesis on Spin-resolved Holography in Ultracold Sodium Gases under supervision of prof.dr. Peter van der Straten and dr. Dries van Oosten"]
-    },
-    {
-      "title": "Microsoft Quantum Lab, QuTech TU Delft (MSc)",
-      "years": "2019–2020",
-      "details": ["Investigating Quasiparticle Poisoning in Floating Semiconductor-Superconductor Hybrid Devices With Gate-Based Reflectometry Sensing in the Leo Kouwenhoven lab"]
-    },
-    {
-      "title": "Utrecht University (MSc)",
-      "years": "2018–2020",
-      "details": ["Experimental Physics", "120 ECTS", "Honours programme: Young Innovators"]
-    },
-    {
-      "title": "SRON Netherlands Institute for Space Research (BSc Thesis)",
-      "years": "2019–2020",
+      "title": "Utrecht University | PhD in Experimental Physics",
+      "years": "2020-2026",
       "details": [
-        "X-ray absorption and emission modelling in AGN 3C 273",
-        "Supervisor: Missagh Mehdipour"
+         "<b>PhD Thesis</b>: <i>Spin-resolved Holography in Ultracold Sodium Gases</i>.",
+         "Supervisors: prof.dr. Peter van der Straten, dr. Dries van Oosten",
+         "Expected defense: March 2026"
       ]
     },
     {
-      "title": "University College Utrecht (BSc)",
+      "title": "Utrecht University | MSc in Experimental Physics",
+      "years": "2018–2020",
+      "details": [
+        "<b>MSc Thesis</b>: <i>Investigating Quasiparticle Poisoning in Floating Semiconductor-Superconductor Hybrid Devices With Gate-Based Reflectometry Sensing</i>.",
+        "Supervisors: Prof. dr. Peter van der Straten, Prof. Dr. Ir. Leo. P. Kouwenhoven",
+        "Young Innovators honours programme"
+      ]
+    },
+    {
+      "title": "University College Utrecht | Liberal Arts and Sciences",
       "years": "2015–2018",
-      "details": ["Major: Physics & Mathematics", "Minor: Performing Studies", "Graduated with Honours"]
+      "details": [
+        "<b>BSc Thesis</b>: <i>Understanding the X-ray absorption and emission in archetypal radio-loud AGN 3C 273 with XMM-Newton RGS</i>.",
+        "Supervisor: dr. Missagh Mehdipour",
+        "<b>Major</b>: Physics & Mathematics, <b>Minor</b>: Performing Studies", 
+        "Graduated with Honours"
+      ]
     },
     {
       "title": "Kranj High School (IB)",
       "years": "2013–2015",
       "details": [
-        "HL: Math, Physics, English, Slovene",
-        "SL: Chemistry, Philosophy",
-        "Extended Essay in Physics"
+        "<b>HL</b>: Math, Physics, English, Slovene, <b>SL</b>: Chemistry, Philosophy",
+        "<b>Extended Essay</b> in Physics"
       ]
     }
   ],
 
   "experience": [
       {
-      "role": "Ultracold Quantum Gases Laboratory (Utrecht University)",
+      "role": "Ultracold Quantum Gases Laboratory at Utrecht University",
       "years": "2020–2026",
       "points": [
-        "Operated and maintained a cold-atoms laboratory", 
-        "Developed and implemented <a href='https://link.aps.org/doi/10.1103/PhysRevA.110.023303' target='_blank' rel='noopener noreferrer'>spin-resolved off-axis holography</a>",
-        "Created advanced <a href='' target='_blank' rel='noopener noreferrer'>inpainting reconstruction pipelines based on principal component analysis for phase imaging</a>",
-        "Created an <a href='https://github.com/nblaznik/BECsplorer' target='_blank' rel='noopener noreferrer'>analysis tool</a> based on Qt for spin dynamics, segmentation, and parameter correlation across experiments"
-      ]
+        "Operated and maintained a cold-atom experiment with sodium BECs.",
+        "Developed and implemented new techniques for <a href='https://link.aps.org/doi/10.1103/PhysRevA.110.023303' target='_blank' rel='noopener noreferrer'>spin-resolved off-axis holography</a>.",
+        "Designed <a href='' target='_blank' rel='noopener noreferrer'>PCA-based phase reconstruction and background-inpainting pipelines.</a>",
+        "Created a Python+PyQt5  <a href='https://github.com/nblaznik/BECsplorer' target='_blank' rel='noopener noreferrer'>analysis suite</a> for controlling the experiment and analysing spin dynamics, spin segmentation, and parameter correlation across experiments."
+        ]
     },
     {
-      "role": "Microsoft Quantum Lab & QuTech",
+      "role": "Microsoft Quantum Lab at QuTech",
       "years": "2019–2020",
       "points": [
-        "Investigated quasiparticle poisoning in hybrid semiconductor-superconductor devices",
-        "Part of MSc thesis project",
-        "Modeling large data sets with Python"
+        "Performed gate-based reflectometry analysis and noise characterization of superconducting charge islands.",
+        "Built Python workflows for signal extraction and device characterization."
       ]
     },
     {
-      "role": "Data Analysis at SRON",
+      "role": "SRON (Netherlands Institute for Space Research)",
       "years": "2018",
       "points": [
-        "High-resolution X-ray spectral analysis using SPEX",
-        "Unix command-line workflow"
+        "Analysed high-resolution X-ray spectra of AGN 3C 273 using SPEX spectral fitting program.",
+        "Worked extensively in Unix environments and command-line tools.",
+        "Produced quantitative interpretation of absorption and emission features."
       ]
     },
     {
-      "role": "HiSPARC Data Analysis",
+      "role": "HiSPARC Cosmic Ray Detection Project",
       "years": "2016",
       "points": [
-        "Studied cosmic ray detection under weather conditions",
-        "Python visualisation work"
+        "Studied weather effects on cosmic-ray detection.",
+        "Focused on clear data presentation and statistical interpretation."
       ]
     },
     {
-      "role": "Physics & Mathematics Tutor at IB Academy",
+      "role": "IB Academy",
       "years": "2016–present",
       "points": [
-        "Tutoring and revision courses",
-        "Wrote study guide",
-        "Developed IB Academy Website and scheduling platform"
+        "Tutored students in physics and mathematics, including intensive revision session.",
+        "Created a study guide.",
+        "Developing IB Academy Website, scheduling system and invoicing tools."
       ]
     },
     {
-      "role": "Environmental Campaign Ambassador",
-      "years": "2011–2013",
-      "points": ["Certificate of excellence"]
+      "role": "Zapik",
+      "years": "2011–2020",
+      "points": ["Science Correspondent for a Slovenian Magazine."]
     }
   ],
 
@@ -115,43 +114,36 @@
       "AMO Conference (2022, 2023)",
       "Summer Physics School Bad Honnef (2024)"
     ],
-    "national": {
-      "mathematics": ["Gold 2010", "Gold 2011", "Gold 2012"],
-      "logic": ["Gold 2010", "Silver 2013", "Silver 2014"],
-      "astronomy": ["Silver 2010"]
-    },
+    
     "extracurricular": [
-      "Duke of Edinburgh Gold, Silver, Bronze",
-      "National Chess Champion U18 (2013)",
-      "National Improv Theatre Champion (2014–2015)",
-      "Lead/rhythm guitarist (UCU band)"
-    ]
-  },
-
-  "other_experience": [
-    "Treasurer, PR and equipment manager for UCU committees (2016–2018)",
-    "Managed events with 200+ people and budgets around 10,000 €",
-    "Co-founded UCSA Hermes (2017)",
-    "Science correspondent for Slovenian magazine “Zapik” (2011–2020)"
-  ],
+      "Gold, Silver and Bronze The Duke of Edinburgh Award",
+      "Former National U18 Chess Champion",
+      "Leadership roles in UCSA committees, managing events and budgets",
+      "Founded Hermes, the largest sports committee at UCU"
+      ]
+    },
 
   "skills": {
-    "fluent": ["Python", "LaTeX", "Mathematica", "Adobe Photoshop/Lightroom", "MS Office", "Music Theory"],
-    "intermediate": ["Javascript", "HTML",  "React", "Vite", "CSS", "Tailwind CSS", "Framer Motion", "SQL", "Linux Terminal", "C#", "C", "Blender"]
+    "prog_data": ["Python (NumPy, SciPy, Matplotlib, scikit-image, scikit-learn, OpenCV)", "PyTorch (GPU ops, optimisation)", "SVD/PCA pipelines", "noise modeling", "image reconstruction", "Jupyter", "Linux/WSL", "shell scripting"],
+    "soft_eng": ["PyQt5 (front-end + back-end)", "Arduino / ESP8266 control", "Git/GitHub, SQL", "HTML, CSS, JS", "React, Vite, Tailwind, Framer Motion"],
+    "experimental": ["Digital Holography", "Numerical phase reconstruction", "Optics and imaging", "RF control, magnetic trapping, noise diagnostics", "Electronics", "Oscilloscopes, function generators, PID controllers"], 
+    "other": ["Latex", "Photoshop", "Inkscape", "Blender", "Music theory", "Mathematica", "MS Excel and Google Sheets scripting"]
   },
 
   "languages": {
-    "Slovenian": "mother tongue",
+    "Slovenian": "native",
     "English": "fluent",
     "Serbo-Croatian": "proficient",
     "Dutch": "conversational"
   },
 
   "publications": [
-    "Blaznik, N., et al. (2024). Imaging spinor Bose gases using off-axis holography. Phys. Rev. A, 110, 023303.",
-    "Blaznik, N., et al. (2025). Polarization-sensitive imaging in magnetic environments. SciPost Physics Core (Accepted).",
-    "Blaznik, N., et al. (2025). Coherent Spin Control and Zeeman-State Reconstruction in a Spin-1 Sodium Gas (in preparation).",
-    "Blaznik, N., et al. (2025). Investigating Spin Diffusion in Spinor Bose Gases (in preparation).",
-    "Blaznik, N., Mosk, A.P. (2025). Background correction method for noise reduction in holography (patent submitted)."
+    "<b>Blaznik, N.</b>, et al. (2024). Imaging spinor Bose gases using off-axis holography. Phys. Rev. A, 110, 023303.",
+    "<b>Blaznik, N.</b>, et al. (2025). Polarization-sensitive imaging in magnetic environments. SciPost Physics Core (Accepted).",
+    "<b>Blaznik, N.</b>, et al. (2025). Coherent Spin Control and Zeeman-State Reconstruction in a Spin-1 Sodium Gas (in preparation).",
+    "<b>Blaznik, N.</b>, et al. (2025). Investigating Spin Diffusion in Spinor Bose Gases (in preparation).",
+    "<b>Blaznik, N.</b>, Mosk, A.P. (2025). Background correction method for noise reduction in holography (patent submitted).", 
+    "De Jong, D., Waardenburg, D., <b>Blaznik, N.</b>, Han, L., Malinowski, F., Prosko, C., Van Veen, J,, Krogstrup, P., Kouwenhoven, L. P. and Pfaff, W. (2020). Dispersive sensing of electron tunneling between quantum dots in proximitized InAs nanowires. In APS March Meeting",
+    "<b>Blaznik, N.</b> (2020) Investigating Quasiparticle Poisoning in Floating Hybrid Double Dot Devices Using Gate-Based Sensing, Master's thesis"
   ]
 }
