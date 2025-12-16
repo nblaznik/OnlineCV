@@ -79,3 +79,22 @@ button:focus,
 .no-snap {
   scroll-snap-type: none !important;
 }
+
+@keyframes spin-open {
+  0% { transform: rotate(0deg); }
+  /* 70% { transform: rotate(540deg); } */
+  100% { transform: rotate(225deg); }
+}
+
+@keyframes spin-close {
+  0% { transform: rotate(225deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-spin-open {
+  animation: spin-open 600ms ease-out forwards;
+}
+
+.animate-spin-close {
+  animation: spin-close 600ms ease-in forwards;
+}

@@ -11,21 +11,25 @@ function AccordionCard({ id, title, subtitle, isOpen, onToggle, children }) {
   return (
     <div
       id={id}
-      className={`border border-[#383225]/20 rounded-xl bg-[#f1e4c6] overflow-hidden transition-shadow ${
-        isOpen ? "shadow-lg" : "shadow-sm"
-      }`}
+      className={`border border-[#383225]/20 rounded-xl bg-[#f1e4c6]
+        overflow-hidden transition-shadow
+        ${isOpen ? "shadow-lg" : "shadow-sm"}
+        [overflow-anchor:none]
+      `}
     >
-      <button
+    <button
+        type="button"
+        onMouseDown={(e) => e.preventDefault()}
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`${id}-content`}
+        className="w-full text-left p-6 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#383225]"
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             onToggle();
           }
         }}
-        aria-expanded={isOpen}
-        aria-controls={`${id}-content`}
-        className="w-full text-left p-6 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#383225]"
       >
         <span className="font-bold text-lg">
           {title}{" "}
@@ -37,12 +41,15 @@ function AccordionCard({ id, title, subtitle, isOpen, onToggle, children }) {
         </span>
 
         <span
-          className={`text-xl transition-transform ${
-            isOpen ? "rotate-45" : "rotate-0"
-          }`}
+          className={`
+            inline-flex items-center justify-center
+            w-6 h-6 text-xl origin-center
+            ${isOpen ? "animate-spin-open" : "animate-spin-close"}
+          `}
         >
           +
         </span>
+
       </button>
 
       <div
