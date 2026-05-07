@@ -275,17 +275,6 @@ export default function App() {
             </div>
           </div>
         </div> {/*(make it centered on mobile) */}
-        <div
-          className="
-            absolute top-5
-            left-1/2 -translate-x-1/2     /* centered on mobile */
-            md:left-auto md:translate-x-0 /* disable centering on md+ */
-            md:right-5                    /* right aligned on md+ */
-            text-gray-600 text-sm
-          "
-        >
-          <p>Website currently in production, November 2025</p>
-        </div>
       </section>
 
       {/* SECTION 2 ??" PROFILE */}
