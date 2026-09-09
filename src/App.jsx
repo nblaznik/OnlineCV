@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import cv from "./data/cv_data.json";
+import CvActions from "./CvActions";
 import MobileNav from "./MobileNav";
 import PolygonCanvas from "./PolygonCanvas";
 import { ArrowDown, ChevronDown, Github, Instagram, Linkedin, Newspaper } from "lucide-react";
@@ -272,6 +273,7 @@ export default function App() {
 
   return (
   <div className="relative h-[100dvh] w-full overflow-hidden">
+    <CvActions />
     <div className="relative z-10 grid h-full w-full grid-cols-1 lg:grid-cols-[30%_70%]">
 
         {/* LEFT COLUMN ??" APPEARS ONLY AFTER PAGE 1 */}

@@ -2,29 +2,42 @@
   "name": "Nejc Blaznik",
   "contact": {
     "email": "blaznik.nejc@gmail.com",
-    "phone": ["(+386) 41 819 743", "(+31) 6 18 625 316"],
+    "phone": [
+      "(+386) 41 819 743",
+      "(+31) 6 18 625 316"
+    ],
     "address": [
       "Visoko 82, 4212 Visoko, Slovenia",
       "Rigastraat 388, 3541 ED Utrecht, The Netherlands"
     ],
     "socials": [
-      { "platform": "LinkedIn",  "link": "https://www.linkedin.com/in/nejc-blaznik-b2a1a7b8/"},
-      { "platform": "GitHub",    "link": "https://github.com/nblaznik"},
-      { "platform": "Instagram", "link": "https://www.instagram.com/nejcblaznik/"},
-      { "platform": "Scholar",   "link": "https://scholar.google.com/citations?user=0wEoXiIAAAAJ&hl=en&inst=7240083048524121927&oi=ao"}
+      {
+        "platform": "LinkedIn",
+        "link": "https://www.linkedin.com/in/nejc-blaznik-b2a1a7b8/"
+      },
+      {
+        "platform": "GitHub",
+        "link": "https://github.com/nblaznik"
+      },
+      {
+        "platform": "Instagram",
+        "link": "https://www.instagram.com/nejcblaznik/"
+      },
+      {
+        "platform": "Scholar",
+        "link": "https://scholar.google.com/citations?user=0wEoXiIAAAAJ&hl=en&inst=7240083048524121927&oi=ao"
+      }
     ]
   },
-
   "profile": "Experimental physicist with a strong background in <b>quantum mechanics,  optics</b> and <b>data-driven imaging</b>. Strong blend of <b>laboratory expertise, software engineering</b> and <b>data analysis</b>. Built new imaging methods, custom reconstruction pipelines and robust analysis tools for complex experiments. Interested in problems where physics, computation and instrumentation meet.",
-
   "education": [
     {
       "title": "Utrecht University | PhD in Experimental Physics",
       "years": "2020-2026",
       "details": [
-         "<b>PhD Thesis</b>: <i>Spin-resolved Holography in Ultracold Sodium Gases</i>.",
-         "Supervisors: prof.dr. Peter van der Straten, dr. Dries van Oosten",
-         "PhD thesis defended: March 2026"
+        "<b>PhD Thesis</b>: <i>Spin-resolved Holography in Ultracold Sodium Gases</i>.",
+        "Supervisors: prof.dr. Peter van der Straten, dr. Dries van Oosten",
+        "PhD thesis defended: March 2026"
       ]
     },
     {
@@ -42,7 +55,7 @@
       "details": [
         "<b>BSc Thesis</b>: <i>Understanding the X-ray absorption and emission in archetypal radio-loud AGN 3C 273 with XMM-Newton RGS</i>.",
         "Supervisor: dr. Missagh Mehdipour",
-        "<b>Major</b>: Physics & Mathematics, <b>Minor</b>: Performing Studies", 
+        "<b>Major</b>: Physics & Mathematics, <b>Minor</b>: Performing Studies",
         "Graduated with Honours"
       ]
     },
@@ -55,19 +68,16 @@
       ]
     }
   ],
-
   "experience": [
     {
       "role": "AtomQL",
       "years": "May 2026–present",
       "points": [
         "Part of the team building a strontium apparatus to trap and neutralise Sr⁺ ions in optical tweezers, contributing across vacuum, laser systems, and optics.",
-        "Built the Sr laser system at 422, 1092, 674, and 1033 nm, including beam delivery and shutter control.",
-        "Designed a pulsed electron-shelving detection sequence for PMT spectroscopy on Sr⁺, using resolved-sideband spectroscopy on the 674 nm quadrupole transition as an error signal for micromotion compensation.",
         "Redesigned and rebuilt the group’s data-management and analysis structure."
       ]
     },
-      {
+    {
       "role": "Ultracold Quantum Gases Laboratory at Utrecht University",
       "years": "2020–2026",
       "points": [
@@ -75,7 +85,7 @@
         "Developed and implemented new techniques for <a href='https://link.aps.org/doi/10.1103/PhysRevA.110.023303' target='_blank' rel='noopener noreferrer'>spin-resolved off-axis holography</a>.",
         "Designed PCA-based phase reconstruction and background-inpainting pipelines <i>(manuscript in preparation)</i>.",
         "Created a Python+PyQt5  <a href='https://github.com/nblaznik/BECsplorer' target='_blank' rel='noopener noreferrer'>analysis suite</a> for controlling the experiment and analysing spin dynamics, spin segmentation, and parameter correlation across experiments."
-        ]
+      ]
     },
     {
       "role": "Microsoft Quantum Lab at QuTech",
@@ -114,39 +124,66 @@
     {
       "role": "Zapik",
       "years": "2011–2020",
-      "points": ["Science Correspondent for a Slovenian Magazine."]
+      "points": [
+        "Science Correspondent for a Slovenian Magazine."
+      ]
     }
   ],
-
   "awards": {
     "poster": [
       "Utrecht University Open Day (2021)",
       "AMO Conference (2022, 2023)",
       "Summer Physics School Bad Honnef (2024)"
     ],
-    
     "extracurricular": [
       "Gold, Silver and Bronze The Duke of Edinburgh Award",
       "Former National U18 Chess Champion",
       "Leadership roles in UCSA committees, managing events and budgets",
       "Founded Hermes, the largest sports committee at UCU"
-      ]
-    },
-
-  "skills": {
-    "prog_data": ["Python (NumPy, SciPy, Matplotlib, scikit-image, scikit-learn, OpenCV)", "PyTorch (GPU ops, optimisation)", "SVD/PCA pipelines", "noise modeling", "image reconstruction", "Jupyter", "Linux/WSL", "shell scripting"],
-    "soft_eng": ["PyQt5 (front-end + back-end)", "Arduino / ESP8266 control", "Git/GitHub, SQL", "HTML, CSS, JS", "React, Vite, Tailwind, Framer Motion"],
-    "experimental": ["Digital Holography", "Numerical phase reconstruction", "Optics and imaging", "RF control, magnetic trapping, noise diagnostics", "Electronics", "Oscilloscopes, function generators, PID controllers"], 
-    "other": ["Latex", "Photoshop", "Inkscape", "Blender", "Music theory", "Mathematica", "MS Excel and Google Sheets scripting"]
+    ]
   },
-
+  "skills": {
+    "prog_data": [
+      "Python (NumPy, SciPy, Matplotlib, scikit-image, scikit-learn, OpenCV)",
+      "PyTorch (GPU ops, optimisation)",
+      "SVD/PCA pipelines",
+      "noise modeling",
+      "image reconstruction",
+      "Jupyter",
+      "Linux/WSL",
+      "shell scripting"
+    ],
+    "soft_eng": [
+      "PyQt5 (front-end + back-end)",
+      "Arduino / ESP8266 control",
+      "Git/GitHub, SQL",
+      "HTML, CSS, JS",
+      "React, Vite, Tailwind, Framer Motion"
+    ],
+    "experimental": [
+      "Digital Holography",
+      "Numerical phase reconstruction",
+      "Optics and imaging",
+      "RF control, magnetic trapping, noise diagnostics",
+      "Electronics",
+      "Oscilloscopes, function generators, PID controllers"
+    ],
+    "other": [
+      "Latex",
+      "Photoshop",
+      "Inkscape",
+      "Blender",
+      "Music theory",
+      "Mathematica",
+      "MS Excel and Google Sheets scripting"
+    ]
+  },
   "languages": {
     "Slovenian": "native",
     "English": "fluent",
     "Serbo-Croatian": "proficient",
     "Dutch": "conversational"
   },
-
   "publications": [
     "<b>Blaznik, N.</b>, et al. (2024). Imaging spinor Bose gases using off-axis holography. Phys. Rev. A, 110, 023303.",
     "<b>Blaznik, N.</b>, et al. (2025). Polarization-sensitive imaging in magnetic environments. SciPost Physics Core (Accepted).",
