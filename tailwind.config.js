@@ -1,22 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {},
   },
   plugins: [],
 }
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
-  theme: {
-    extend: {},
-  },
-  safelist: [
-    {
-      pattern: /\[clip-path\:polygon.*/ , 
-    },
-  ],
-  plugins: [],
-};

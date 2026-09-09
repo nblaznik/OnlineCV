@@ -3,12 +3,10 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  /* max-width: 1000px;    keeps layout tight */
-
-  color-scheme: light dark;
+  color-scheme: light;
   color: #0c302e;
   background-color: #ddc490;
 
@@ -30,10 +28,18 @@ a:hover {
 body {
   margin: 0;
   padding: 0;
+  min-width: 320px;
+  overflow: hidden;
+  background-color: #ddc490;
 }
 
-html, body {
+html, body, #root {
+  height: 100%;
   overscroll-behavior: none;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 h1 {
@@ -42,37 +48,8 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  /* background-color: #bda8a8; */
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  /* border-color: #9b4e05; */
-  background-color: #944b1a3f;
-
-}
-button:focus,
-/* button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 
@@ -80,21 +57,11 @@ button:focus,
   scroll-snap-type: none !important;
 }
 
-@keyframes spin-open {
-  0% { transform: rotate(0deg); }
-  /* 70% { transform: rotate(540deg); } */
-  100% { transform: rotate(225deg); }
-}
-
-@keyframes spin-close {
-  0% { transform: rotate(225deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.animate-spin-open {
-  animation: spin-open 600ms ease-out forwards;
-}
-
-.animate-spin-close {
-  animation: spin-close 600ms ease-in forwards;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

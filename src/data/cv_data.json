@@ -24,7 +24,7 @@
       "details": [
          "<b>PhD Thesis</b>: <i>Spin-resolved Holography in Ultracold Sodium Gases</i>.",
          "Supervisors: prof.dr. Peter van der Straten, dr. Dries van Oosten",
-         "Expected defense: March 2026"
+         "PhD thesis defended: March 2026"
       ]
     },
     {
@@ -57,13 +57,23 @@
   ],
 
   "experience": [
+    {
+      "role": "AtomQL",
+      "years": "May 2026–present",
+      "points": [
+        "Part of the team building a strontium apparatus to trap and neutralise Sr⁺ ions in optical tweezers, contributing across vacuum, laser systems, and optics.",
+        "Built the Sr laser system at 422, 1092, 674, and 1033 nm, including beam delivery and shutter control.",
+        "Designed a pulsed electron-shelving detection sequence for PMT spectroscopy on Sr⁺, using resolved-sideband spectroscopy on the 674 nm quadrupole transition as an error signal for micromotion compensation.",
+        "Redesigned and rebuilt the group’s data-management and analysis structure."
+      ]
+    },
       {
       "role": "Ultracold Quantum Gases Laboratory at Utrecht University",
       "years": "2020–2026",
       "points": [
         "Operated and maintained a cold-atom experiment with sodium BECs.",
         "Developed and implemented new techniques for <a href='https://link.aps.org/doi/10.1103/PhysRevA.110.023303' target='_blank' rel='noopener noreferrer'>spin-resolved off-axis holography</a>.",
-        "Designed <a href='' target='_blank' rel='noopener noreferrer'>PCA-based phase reconstruction and background-inpainting pipelines.</a>",
+        "Designed PCA-based phase reconstruction and background-inpainting pipelines <i>(manuscript in preparation)</i>.",
         "Created a Python+PyQt5  <a href='https://github.com/nblaznik/BECsplorer' target='_blank' rel='noopener noreferrer'>analysis suite</a> for controlling the experiment and analysing spin dynamics, spin segmentation, and parameter correlation across experiments."
         ]
     },
@@ -140,9 +150,9 @@
   "publications": [
     "<b>Blaznik, N.</b>, et al. (2024). Imaging spinor Bose gases using off-axis holography. Phys. Rev. A, 110, 023303.",
     "<b>Blaznik, N.</b>, et al. (2025). Polarization-sensitive imaging in magnetic environments. SciPost Physics Core (Accepted).",
-    "<b>Blaznik, N.</b>, et al. (2025). Coherent Spin Control and Zeeman-State Reconstruction in a Spin-1 Sodium Gas (in preparation).",
-    "<b>Blaznik, N.</b>, et al. (2025). Investigating Spin Diffusion in Spinor Bose Gases (in preparation).",
-    "<b>Blaznik, N.</b>, Mosk, A.P. (2025). Background correction method for noise reduction in holography (patent submitted).", 
+    "<b>Blaznik, N.</b>, et al. (2026). Coherent Spin Control and Zeeman-State Reconstruction in a Spin-1 Sodium Gas (in preparation).",
+    "<b>Blaznik, N.</b>, et al. (2026). Investigating Spin Diffusion in Spinor Bose Gases (in preparation).",
+    "<b>Blaznik, N.</b>, Mosk, A.P. (2026). Background correction method for noise reduction in holography (patent submitted).",
     "De Jong, D., Waardenburg, D., <b>Blaznik, N.</b>, Han, L., Malinowski, F., Prosko, C., Van Veen, J,, Krogstrup, P., Kouwenhoven, L. P. and Pfaff, W. (2020). Dispersive sensing of electron tunneling between quantum dots in proximitized InAs nanowires. In APS March Meeting",
     "<b>Blaznik, N.</b> (2020) Investigating Quasiparticle Poisoning in Floating Hybrid Double Dot Devices Using Gate-Based Sensing, Master's thesis"
   ]

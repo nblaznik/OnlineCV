@@ -1,328 +1,282 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
+  motion as motionComponents,
   useMotionTemplate,
-  useMotionValue
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
 } from "framer-motion";
 
-import dna0 from "./data/dna_intro.json";  // face
-import dna1 from "./data/dna_face.json";  // face
-import dna2 from "./data/dna_uni.json";  // university
-import dna3 from "./data/dna_lab.json";  // 
-// import dna3 from "./data/dna_face.json";  //    
-import dna4 from "./data/dna_award.json";
-import dna5 from "./data/dna_skill.json";
-import dna6 from "./data/dna_article.json";
+import dnaIntroSource from "./data/dna_intro.json";
+import dnaFace from "./data/dna_face.json";
+import dnaUniversity from "./data/dna_uni.json";
+import dnaLaboratorySource from "./data/dna_lab.json";
+import dnaAward from "./data/dna_award.json";
+import dnaSkill from "./data/dna_skill.json";
+import dnaArticleSource from "./data/dna_article.json";
+import { SECTION_IDS } from "./navigation";
 
+const MotionDiv = motionComponents.div;
 
+const dnaIntro = dnaIntroSource.map((triangle) => ({
+  points: triangle.points.map(([x, y]) => [x - 200, y]),
+  color: triangle.color,
+}));
 
-// Compute approximate triangle size for parallax depth
-function sizeOf(poly) {
-  const xs = poly.points.map(p => p[0]);
-  const ys = poly.points.map(p => p[1]);
-  return (Math.max(...xs) - Math.min(...xs)) *
-         (Math.max(...ys) - Math.min(...ys));
+const dnaLaboratory = dnaLaboratorySource.map((triangle) => ({
+  points: triangle.points.map(([x, y]) => [x * 0.7, y * 0.7]),
+  color: triangle.color,
+}));
+
+const dnaArticle = dnaArticleSource.map((triangle) => ({
+  points: triangle.points.map(([x, y]) => [x * 0.7 + 120, y * 0.7 + 120]),
+  color: triangle.color,
+}));
+
+// One exact polygon state per page section. Section-derived transition points
+// keep this mapping stable when a card opens or the viewport changes height.
+const DNA = [
+  dnaIntro,
+  dnaFace,
+  dnaLaboratory,
+  dnaUniversity,
+  dnaAward,
+  dnaSkill,
+  dnaArticle,
+  dnaFace,
+];
+
+function createDefaultKeyframes() {
+  const stops = [0];
+  const shapes = [0];
+
+  for (let index = 1; index < SECTION_IDS.length; index += 1) {
+    const boundary = (index - 0.5) / (SECTION_IDS.length - 1);
+    const halfWidth = 0.15 / (SECTION_IDS.length - 1);
+    stops.push(boundary - halfWidth, boundary + halfWidth);
+    shapes.push(index - 1, index);
+  }
+
+  stops.push(1);
+  shapes.push(SECTION_IDS.length - 1);
+  return { shapes, stops };
 }
 
+const DEFAULT_KEYFRAMES = createDefaultKeyframes();
 
-const dna_intro = dna0.map(tri => ({
-  points: tri.points.map(([x,y]) => [x - 200, y]),
-  color: tri.color
-}));
+function sizeOf(triangle) {
+  const xs = triangle.points.map((point) => point[0]);
+  const ys = triangle.points.map((point) => point[1]);
+  return (
+    (Math.max(...xs) - Math.min(...xs)) *
+    (Math.max(...ys) - Math.min(...ys))
+  );
+}
 
-const dna_lab = dna3.map(tri => ({
-  points: tri.points.map(([x,y]) => [x * 0.7, y * 0.7]),
-  color: tri.color
-}));
+function seededValue(index, salt) {
+  const value = Math.sin(index * 91.17 + salt * 47.31) * 43758.5453;
+  return value - Math.floor(value);
+}
 
-const dna_article = dna6.map(tri => ({
-  points: tri.points.map(([x,y]) => [x * 0.7+120, y * 0.7+120]),
-  color: tri.color
-}));
+function PolygonTriangle({
+  index,
+  maxSize,
+  mouseX,
+  mouseY,
+  prefersReducedMotion,
+  scrollYProgress,
+  scatter,
+  keyframes,
+}) {
+  const triangles = keyframes.shapes.map((shapeIndex) => DNA[shapeIndex][index]);
 
-const DNA = [dna_intro, dna1, dna_lab, dna2, dna4, dna5, dna_article, dna1];
+  const coordinateValues = (vertex, axis) =>
+    triangles.map((triangle, keyframeIndex) => {
+      const coordinate = triangle.points[vertex][axis];
+      const shapeIndex = keyframes.shapes[keyframeIndex];
+      if (shapeIndex !== 0 || prefersReducedMotion) return coordinate;
+      return coordinate + (axis === 0 ? scatter.x : scatter.y);
+    });
+
+  const p1x = useTransform(scrollYProgress, keyframes.stops, coordinateValues(0, 0));
+  const p1y = useTransform(scrollYProgress, keyframes.stops, coordinateValues(0, 1));
+  const p2x = useTransform(scrollYProgress, keyframes.stops, coordinateValues(1, 0));
+  const p2y = useTransform(scrollYProgress, keyframes.stops, coordinateValues(1, 1));
+  const p3x = useTransform(scrollYProgress, keyframes.stops, coordinateValues(2, 0));
+  const p3y = useTransform(scrollYProgress, keyframes.stops, coordinateValues(2, 1));
+
+  const red = useTransform(
+    scrollYProgress,
+    keyframes.stops,
+    triangles.map((triangle) => triangle.color[0]),
+  );
+  const green = useTransform(
+    scrollYProgress,
+    keyframes.stops,
+    triangles.map((triangle) => triangle.color[1]),
+  );
+  const blue = useTransform(
+    scrollYProgress,
+    keyframes.stops,
+    triangles.map((triangle) => triangle.color[2]),
+  );
+  const alpha = useTransform(
+    scrollYProgress,
+    keyframes.stops,
+    triangles.map((triangle) => triangle.color[3] / 255),
+  );
+
+  const firstTransition = [keyframes.stops[0], keyframes.stops[2]];
+  const rotation = useTransform(
+    scrollYProgress,
+    firstTransition,
+    [prefersReducedMotion ? 0 : scatter.rotation, 0],
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    firstTransition,
+    [prefersReducedMotion ? 1 : 2, 1],
+  );
+  const opacity = useTransform(scrollYProgress, firstTransition, [0.3, 0.9]);
+
+  const depth = (2 * sizeOf(triangles[0])) / maxSize;
+  const parallaxX = useSpring(
+    useTransform(mouseX, (value) =>
+      prefersReducedMotion ? 0 : value * depth * 60,
+    ),
+    { stiffness: 90, damping: 15, mass: 0.02 },
+  );
+  const parallaxY = useSpring(
+    useTransform(mouseY, (value) =>
+      prefersReducedMotion ? 0 : value * depth * 60,
+    ),
+    { stiffness: 90, damping: 15, mass: 0.02 },
+  );
+
+  const color = useMotionTemplate`rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  const clipPath = useMotionTemplate`polygon(
+    ${p1x}px ${p1y}px,
+    ${p2x}px ${p2y}px,
+    ${p3x}px ${p3y}px
+  )`;
+
+  return (
+    <MotionDiv
+      className="absolute inset-0"
+      style={{
+        backgroundColor: color,
+        clipPath,
+        opacity,
+        rotate: rotation,
+        scale,
+        translateX: parallaxX,
+        translateY: parallaxY,
+      }}
+    />
+  );
+}
 
 export default function PolygonCanvas({ scrollRef }) {
-  // Find actual canvas center offset based on CSS transform
-    const [centerOffset, setCenterOffset] = useState({ x: 0, y: 0 });
+  const [keyframes, setKeyframes] = useState(DEFAULT_KEYFRAMES);
+  const { scrollYProgress } = useScroll({ container: scrollRef });
+  const prefersReducedMotion = useReducedMotion();
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-    useEffect(() => {
-    const updateOffset = () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
+  const maxSize = useMemo(() => Math.max(...DNA[0].map(sizeOf)), []);
+  const scatter = useMemo(() => {
+    const viewportWidth = typeof window === "undefined" ? 1024 : window.innerWidth;
+    const viewportHeight = typeof window === "undefined" ? 768 : window.innerHeight;
 
-        // your wrapper shifts to 65% on md+
-        const leftShift = window.innerWidth >= 768 ? w * 0.65 : w * 0.5;
-
-        setCenterOffset({
-        x: leftShift - w * 0.5, // difference from normal center
-        y: 0                    // vertical stays centered
-        });
-    };
-
-    updateOffset();
-    window.addEventListener("resize", updateOffset);
-    return () => window.removeEventListener("resize", updateOffset);
-    }, []);
-
-    const width = 1024;
-    const height = 848;
-    const { scrollYProgress } = useScroll({ container: scrollRef });
-
-  // ------------------------------------------------------------
-  // 1. STARTING POSITIONS
-  // ------------------------------------------------------------
-    const SCATTER = 0.5; // 250% of viewport width
-
-    const starting = useMemo(() =>
-    DNA[0].map(() => ({
-        x: (Math.random() - 0.5) * window.innerWidth * SCATTER,
-        y: (Math.random() - 0.5) * window.innerHeight * SCATTER,
-        rot: Math.random() * 100,
-        delay: Math.random() * 0.8
-    }))
-    , [centerOffset]);
-
-  // ------------------------------------------------------------
-  // 2. PARALLAX MOUSE
-  // ------------------------------------------------------------
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+    return DNA[0].map((_, index) => ({
+      x: (seededValue(index, 1) - 0.5) * viewportWidth * 0.5,
+      y: (seededValue(index, 2) - 0.5) * viewportHeight * 0.5,
+      rotation: seededValue(index, 3) * 100,
+    }));
+  }, []);
 
   useEffect(() => {
-    const onMove = e => {
-      setMouse({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1
+    const container = scrollRef.current;
+    if (!container) return undefined;
+
+    const updateKeyframes = () => {
+      const maxScroll = container.scrollHeight - container.clientHeight;
+      if (maxScroll <= 0) return;
+
+      const sections = SECTION_IDS.map((id) => document.getElementById(id));
+      if (sections.some((section) => section === null)) return;
+
+      const nextStops = [0];
+      const nextShapes = [0];
+      const halfWidth = (container.clientHeight * 0.15) / maxScroll;
+
+      for (let index = 1; index < sections.length; index += 1) {
+        const boundaryScroll = sections[index].offsetTop - container.clientHeight / 2;
+        const boundary = Math.min(1, Math.max(0, boundaryScroll / maxScroll));
+        nextStops.push(
+          Math.max(nextStops.at(-1), boundary - halfWidth),
+          Math.min(1, boundary + halfWidth),
+        );
+        nextShapes.push(index - 1, index);
+      }
+
+      nextStops.push(1);
+      nextShapes.push(SECTION_IDS.length - 1);
+
+      setKeyframes((currentKeyframes) => {
+        const unchanged = currentKeyframes.stops.every(
+          (stop, index) => Math.abs(stop - nextStops[index]) < 0.0001,
+        );
+        return unchanged
+          ? currentKeyframes
+          : { shapes: nextShapes, stops: nextStops };
       });
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-  
-  const maxSize = useMemo(() => Math.max(...DNA[0].map(sizeOf)), []);
-  const PARALLAX = 60;
 
-  // ------------------------------------------------------------
-  // 3. BUILD THE TIMELINE
-  // ------------------------------------------------------------
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      Boolean,
+    );
+    const resizeObserver = new ResizeObserver(updateKeyframes);
+    resizeObserver.observe(container);
+    sections.forEach((section) => resizeObserver.observe(section));
+    window.addEventListener("resize", updateKeyframes);
+    updateKeyframes();
 
-  const MORPH = 20;  // fast transition
-  const HOLD  = 20;  // stay on shape
-  const ranges = [];
-  let t = 0;
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateKeyframes);
+    };
+  }, [scrollRef]);
 
-  for (let i = 0; i < DNA.length - 1; i++) {
-    ranges.push({ type: "morph",  start: t, end: t + MORPH, from: i, to: i+1 });
-    t += MORPH;
-    ranges.push({ type: "hold",   start: t, end: t + HOLD,  from: i+1, to: i+1 });
-    t += HOLD;
-  }
+  useEffect(() => {
+    if (prefersReducedMotion) return undefined;
 
-  const total = t - 1;
-  const timeline = ranges.map(r => ({
-    ...r,
-    start: r.start / total,
-    end: r.end / total
-  }));
+    const handleMouseMove = (event) => {
+      mouseX.set((event.clientX / window.innerWidth) * 2 - 1);
+      mouseY.set((event.clientY / window.innerHeight) * 2 - 1);
+    };
 
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY, prefersReducedMotion]);
 
-  function getStage(progress) {
-    for (let i = 0; i < timeline.length; i++) {
-      if (progress >= timeline[i].start && progress <= timeline[i].end) {
-        return timeline[i];
-      }
-    }
-    return timeline[timeline.length - 2];
-  }
-
-const [progress, setProgress] = useState(0);
-
-useEffect(() => {
-  return scrollYProgress.on("change", (v) => setProgress(v));
-}, [scrollYProgress]);
-
-  // ------------------------------------------------------------
-  // RENDER TRIANGLES
-  // ------------------------------------------------------------
   return (
-    <div
-      className="fixed top-1/2 left-1/2 pointer-events-none -z-10"
-      style={{
-        transform: "translate(-50%, -50%)",
-        width: `${width}px`,
-        height: `${height}px`
-      }}
-    >
-      {DNA[0].map((tri, idx) => {
-        const stageObj = getStage(progress);
-        const isScatterStage = stageObj.from === 0 && stageObj.to === 1;
-        const size = sizeOf(tri);
-        const depth = 2 * size / maxSize;
-        const start = starting[idx];
-
-        // ------------------------------------------------------
-        // Find which part of the timeline we are in
-        // ------------------------------------------------------
-
-        // ------------------------------------------------------
-        // We need: shape A → shape B during morph, or static shape during hold
-        // ------------------------------------------------------
-        const shapeA = DNA[stageObj.from];
-        const shapeB = DNA[stageObj.to];
-
-        const f = shapeA[idx].points;
-        const u = shapeB[idx].points;
-
-        const [rf,gf,bf,af] = shapeA[idx].color;
-        const [ru,gu,bu,au] = shapeB[idx].color;
-
-
-        // ------------------------------------------------------
-        // Vertex morphing - with springs
-        // ------------------------------------------------------
-        // const p1x = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [f[0][0], u[0][0]]), { stiffness: 50, damping: 20 });
-        // const p1y = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [f[0][1], u[0][1]]), { stiffness: 50, damping: 20 });
-
-        // const p2x = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [f[1][0], u[1][0]]), { stiffness: 50, damping: 20 });
-        // const p2y = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [f[1][1], u[1][1]]), { stiffness: 50, damping: 20 });
-
-        // const p3x = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [f[2][0], u[2][0]]), { stiffness: 50, damping: 20 });
-        // const p3y = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [f[2][1], u[2][1]]), { stiffness: 50, damping: 20 });
-
-        // // Color morphing
-        // const r = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [rf, ru]), { stiffness: 50, damping: 20 });
-        // const g = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [gf, gu]), { stiffness: 50, damping: 20 });
-        // const b = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [bf, bu]), { stiffness: 50, damping: 20 });
-        // const alpha = useSpring(useTransform(scrollYProgress, [stageObj.start, stageObj.end], [af/255, au/255]), { stiffness: 50, damping: 20 });
-        
-        function ease(t) {
-        return t * t * t * (t * (6 * t - 15) + 10); // cubic smoothstep
-        }
-
-        function lerp(a, b, t) { return a + (b - a) * t; }
-
-        // use scrollYProgress mapped to [0..1] inside stage
-        const localT = useTransform(
-        scrollYProgress,
-        [stageObj.start, stageObj.end],
-        [0.2, 0.85]
-        );
-
-        // ---- P1 ----
-        const p1x = useTransform(localT, t => {
-        const e = ease(t);
-        return isScatterStage
-            ? lerp(start.x + f[0][0], u[0][0], e)
-            : lerp(f[0][0], u[0][0], e);
-        });
-
-        const p1y = useTransform(localT, t => {
-        const e = ease(t);
-        return isScatterStage
-            ? lerp(start.y + f[0][1], u[0][1], e)
-            : lerp(f[0][1], u[0][1], e);
-        });
-
-        // ---- P2 ----
-        const p2x = useTransform(localT, t => {
-        const e = ease(t);
-        return isScatterStage
-            ? lerp(start.x + f[1][0], u[1][0], e)
-            : lerp(f[1][0], u[1][0], e);
-        });
-
-        const p2y = useTransform(localT, t => {
-        const e = ease(t);
-        return isScatterStage
-            ? lerp(start.y + f[1][1], u[1][1], e)
-            : lerp(f[1][1], u[1][1], e);
-        });
-
-        // ---- P3 ----
-        const p3x = useTransform(localT, t => {
-        const e = ease(t);
-        return isScatterStage
-            ? lerp(start.x + f[2][0], u[2][0], e)
-            : lerp(f[2][0], u[2][0], e);
-        });
-
-        const p3y = useTransform(localT, t => {
-        const e = ease(t);
-        return isScatterStage
-            ? lerp(start.y + f[2][1], u[2][1], e)
-            : lerp(f[2][1], u[2][1], e);
-        });
-
-        // Color morphing
-        const r = useTransform(scrollYProgress, [stageObj.start, stageObj.end], [rf, ru]);
-        const g = useTransform(scrollYProgress, [stageObj.start, stageObj.end], [gf, gu]);
-        const b = useTransform(scrollYProgress, [stageObj.start, stageObj.end], [bf, bu]);
-        const alpha = useTransform(scrollYProgress, [stageObj.start, stageObj.end], [af/255, au/255]);
-        const color = useMotionTemplate`rgba(${r}, ${g}, ${b}, ${alpha})`;
-
-
-        // ------------------------------------------------------
-        // Rotation & opacity during build
-        // ------------------------------------------------------
-        // const rotate = useSpring(
-        //   useTransform(scrollYProgress, [0, timeline[0].end], [start.rot, 0]),
-        //   { stiffness: 180, damping: 100 }
-        // );
-
-        // const opacity = useSpring(
-        //   useTransform(scrollYProgress, [0, timeline[0].end], [0.3, 0.9]),
-        //   { stiffness: 180, damping: 500 }
-        // );
-
-        const rotate =  useTransform(scrollYProgress, [0, timeline[0].end], [start.rot, 0]);
-        const scale =  useTransform(scrollYProgress, [0, timeline[0].end], [2, 1]);
-        const opacity = useTransform(scrollYProgress, [0, timeline[0].end], [0.3, 0.9]);
-
-        // ------------------------------------------------------
-        // Parallax
-        // ------------------------------------------------------
-        const rawPX = useMotionValue(0);
-        const rawPY = useMotionValue(0);
-
-        rawPX.set(mouse.x * depth * PARALLAX);
-        rawPY.set(mouse.y * depth * PARALLAX);
-
-        const parallaxX = useSpring(rawPX, { stiffness: 90, damping: 15, mass: 0.02 });
-        const parallaxY = useSpring(rawPY, { stiffness: 90, damping: 15, mass: 0.02 });
-
-
-        // ------------------------------------------------------
-        // Dynamic clip-path
-        // ------------------------------------------------------
-        const clipPath = useMotionTemplate`
-          polygon(
-            ${p1x}px ${p1y}px,
-            ${p2x}px ${p2y}px,
-            ${p3x}px ${p3y}px
-          )
-        `;
-
-
-        return (
-          <motion.div
-            key={idx}
-            className="absolute inset-0"
-            style={{
-              backgroundColor: color,
-              clipPath,
-              rotate,
-              opacity,
-              scale,
-              translateX: parallaxX,
-              translateY: parallaxY
-            }}
-            transition={{ delay: start.delay, type: "spring", stiffness: 50, damping: 20 }}
-          />
-        );
-      })}
+    <div className="relative h-[1024px] w-[1024px]">
+      {DNA[0].map((_, index) => (
+        <PolygonTriangle
+          key={index}
+          index={index}
+          maxSize={maxSize}
+          mouseX={mouseX}
+          mouseY={mouseY}
+          prefersReducedMotion={prefersReducedMotion}
+          scrollYProgress={scrollYProgress}
+          scatter={scatter[index]}
+          keyframes={keyframes}
+        />
+      ))}
     </div>
   );
 }
