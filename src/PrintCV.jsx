@@ -110,6 +110,7 @@ export default function PrintCV({ data }) {
           <header className="pdf-header">
             <p className="pdf-kicker">Curriculum vitae</p>
             <h1>{data.name}</h1>
+            {data.headline && <p className="pdf-headline">{data.headline}</p>}
             <div className="pdf-contact-line">
               <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>
               {professionalSocials.map((social) => (

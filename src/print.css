@@ -156,6 +156,14 @@
   line-height: 1.05;
 }
 
+.pdf-headline {
+  max-width: 118mm;
+  margin: 2.2mm 0 0;
+  color: #405750;
+  font-size: 8.4pt;
+  line-height: 1.35;
+}
+
 .pdf-contact-line {
   display: flex;
   flex-wrap: wrap;

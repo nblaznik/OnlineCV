@@ -31,7 +31,7 @@ export default function MobileNav({ active, items, onNavigate }) {
   return (
     <nav
       aria-label="CV sections"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-[#383225]/15 bg-[#f1e3c2]/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-[#383225]/15 bg-[#f6ead0]/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_28px_rgba(48,42,26,0.08)] backdrop-blur-md lg:hidden"
     >
       <div className="mx-auto flex w-full max-w-lg items-center justify-between px-0.5 py-1">
         {items.map((item) => {
@@ -47,7 +47,7 @@ export default function MobileNav({ active, items, onNavigate }) {
               onClick={() => onNavigate(item.id)}
               className={`relative flex h-12 min-w-0 basis-[2.125rem] items-center justify-center overflow-hidden rounded-xl text-[0.64rem] font-medium tracking-[0.01em] transition-[flex-grow,max-width,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#0c302e]/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0c302e] motion-reduce:transition-none ${
                 isActive
-                  ? "mx-0.5 max-w-32 grow bg-[#0c302e]/[0.08] px-1.5 text-[#0c302e]"
+                  ? "mx-0.5 max-w-32 grow bg-[#0c302e] px-1.5 text-[#f8eed8] shadow-sm"
                   : "max-w-[2.125rem] grow-0 px-0 text-[#54635e]"
               }`}
             >

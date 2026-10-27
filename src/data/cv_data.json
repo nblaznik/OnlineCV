@@ -1,5 +1,6 @@
 {
   "name": "Nejc Blaznik",
+  "headline": "Experimental physicist working across quantum systems, imaging, and scientific software.",
   "contact": {
     "email": "blaznik.nejc@gmail.com",
     "phone": [
@@ -73,8 +74,8 @@
       "role": "AtomQL",
       "years": "May 2026–present",
       "points": [
-        "Part of the team building a strontium apparatus to trap and neutralise Sr⁺ ions in optical tweezers, contributing across vacuum, laser systems, and optics.",
-        "Redesigned and rebuilt the group’s data-management and analysis structure."
+        "Part of the apparatus build team, working on laser systems and optical setups for trapped Sr⁺ ions, with the goal of neutralising them in optical tweezers.",
+        "Redesigned the lab’s data management and analysis workflows, and created clear, consistent visualisations."
       ]
     },
     {
@@ -116,7 +117,7 @@
       "role": "IB Academy",
       "years": "2016–present",
       "points": [
-        "Tutored students in physics and mathematics, including intensive revision session.",
+        "Tutored students in physics and mathematics, including intensive revision sessions.",
         "Created a study guide.",
         "Developing IB Academy Website, scheduling system and invoicing tools."
       ]
@@ -169,7 +170,7 @@
       "Oscilloscopes, function generators, PID controllers"
     ],
     "other": [
-      "Latex",
+      "LaTeX",
       "Photoshop",
       "Inkscape",
       "Blender",
@@ -190,7 +191,7 @@
     "<b>Blaznik, N.</b>, et al. (2026). Coherent Spin Control and Zeeman-State Reconstruction in a Spin-1 Sodium Gas (in preparation).",
     "<b>Blaznik, N.</b>, et al. (2026). Investigating Spin Diffusion in Spinor Bose Gases (in preparation).",
     "<b>Blaznik, N.</b>, Mosk, A.P. (2026). Background correction method for noise reduction in holography (patent submitted).",
-    "De Jong, D., Waardenburg, D., <b>Blaznik, N.</b>, Han, L., Malinowski, F., Prosko, C., Van Veen, J,, Krogstrup, P., Kouwenhoven, L. P. and Pfaff, W. (2020). Dispersive sensing of electron tunneling between quantum dots in proximitized InAs nanowires. In APS March Meeting",
+    "De Jong, D., Waardenburg, D., <b>Blaznik, N.</b>, Han, L., Malinowski, F., Prosko, C., Van Veen, J., Krogstrup, P., Kouwenhoven, L. P. and Pfaff, W. (2020). Dispersive sensing of electron tunneling between quantum dots in proximitized InAs nanowires. In APS March Meeting",
     "<b>Blaznik, N.</b> (2020) Investigating Quasiparticle Poisoning in Floating Hybrid Double Dot Devices Using Gate-Based Sensing, Master's thesis"
   ]
 }

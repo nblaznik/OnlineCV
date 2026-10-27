@@ -320,6 +320,14 @@ export default function CvEditor({ initialData }) {
           </div>
           <div className="mt-4">
             <Field
+              label="Headline"
+              value={draft.headline || ""}
+              onChange={(value) => setPath(["headline"], value)}
+              hint="Shown prominently on the website and beneath your name in the PDF."
+            />
+          </div>
+          <div className="mt-4">
+            <Field
               label="Profile"
               value={draft.profile}
               onChange={(value) => setPath(["profile"], value)}
